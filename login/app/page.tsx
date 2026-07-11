@@ -13,7 +13,8 @@ export default function Home() {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://pass-tau-livid.vercel.app/api/register", {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "https://pass-tau-livid.vercel.app";
+      const response = await fetch(`${baseUrl}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

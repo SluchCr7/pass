@@ -1,17 +1,18 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const connectDB = require("./config/db");
-require("dotenv").config();
 const cors = require("cors");
 const Port = process.env.PORT || 3001;
 
 connectDB();
 
+const allowedOrigins = process.env.CLIENT_URL
+    ? process.env.CLIENT_URL.split(",")
+    : ["http://localhost:3000", "https://facebook-tau-seven.vercel.app"];
+
 app.use(cors({
-    origin: [
-        "http://localhost:3000", 
-        "https://facebook-tau-seven.vercel.app"
-    ],
+    origin: allowedOrigins,
 }));
 
 app.use(express.json());
