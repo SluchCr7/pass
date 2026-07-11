@@ -7,7 +7,9 @@ const Port = process.env.PORT || 3001;
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000" || "https://facebook-tau-seven.vercel.app", // السماح بالطلبات من هذا المصدر
+}));
 app.use(express.json());
 
 app.use("/api", require("./routes/userRoute"));
